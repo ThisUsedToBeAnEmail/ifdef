@@ -1,6 +1,6 @@
 package ifdef;
 
-$VERSION= '0.11';
+$VERSION= '0.12';
 
 # be strict from now on
 use strict;
