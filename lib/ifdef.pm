@@ -236,6 +236,12 @@ sub import {
     # make sure we start with a clean slate
     &reset;
 
+    # https://rt.cpan.org/Ticket/Display.html?id=95772
+    # https://github.com/Perl/perl5/issues/24975
+    # Source filters can only be added during the interpreter's
+    # compilation phase; don't try adding one at runtime.
+    return if defined $^S;
+
     # set up source filter
     return Filter::Util::Call::filter_add( sub {
         if ( ( $STATUS= Filter::Util::Call::filter_read() ) > 0 ) {
